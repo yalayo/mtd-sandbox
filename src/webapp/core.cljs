@@ -2,8 +2,7 @@
   (:require
    [goog.dom :as gdom]
    [reagent.core :as reagent :refer [atom]]
-   [reagent.dom :as rdom]
-   [district0x.re-frame.google-analytics-fx]))
+   [reagent.dom :as rdom]))
 
 ;; define your app data so that it doesn't get over-written on reload
 (defonce app-state (atom {:text "Let's do this!"}))
@@ -33,6 +32,3 @@
   ;; your application
   ;; (swap! app-state update-in [:__figwheel_counter] inc)
   )
-
-;; To Disable GA while developing:
-(district0x.re-frame.google-analytics-fx/set-enabled! (not goog.DEBUG))
