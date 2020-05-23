@@ -1,1 +1,3 @@
-(ns webapp.all-tests)
+(ns webapp.all-tests
+  (:require [models.users.core-test]))
+
