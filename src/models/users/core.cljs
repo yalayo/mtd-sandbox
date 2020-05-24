@@ -24,21 +24,18 @@
 
                                         ;(consulta)
 
-(re-frame/reg-event-fx
- ::init
- (fn [{:keys [db]} [_ _]]
-   {:db db
-    :dispatch [::init-re-graph]}))
+;(re-frame/reg-event-fx
+; ::init
+; (fn [{:keys [db]} [_ _]]
+;   {:db db
+;    :dispatch [::init-re-graph]}))
 
 
-(re-frame/reg-event-fx
- ::init-re-graph
- (fn [{:keys [db]} [_ _]]
-   {:db db
-    :dispatch [::re-graph/init {:ws {:url "wss://3vsyt7kgfffilfb54esnzlhnuu.appsync-realtime-api.us-east-1.amazonaws.com/graphql"
-                                :connection-init-payload {}}
-                                :http {:url "https://3vsyt7kgfffilfb54esnzlhnuu.appsync-realtime-api.us-east-1.amazonaws.com/graphql"
-                                       :http-parameters {:with-credentials? false :headers {"x-api-key" "da2-nrwm45qlsjbtvlpuf5tpk27q3i"}}}}]}))
+;(re-frame/reg-event-fx
+; ::init-re-graph
+; (fn [{:keys [db]} [_ _]]
+;   {:db db
+;    :dispatch }))
 
 
 (re-frame/reg-event-fx

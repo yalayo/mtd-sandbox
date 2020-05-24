@@ -12,7 +12,9 @@
 (defonce app-state (atom {}))
 
 (defn init-re-graph []
-  (re-frame/dispatch [::model/init]))
+  (re-frame/dispatch-sync [::re-graph/init {:ws nil
+                                            :http {:url "https://3vsyt7kgfffilfb54esnzlhnuu.appsync-realtime-api.us-east-1.amazonaws.com/graphql"
+                                                   :http-parameters {:with-credentials? false :headers {"x-api-key" "da2-nrwm45qlsjbtvlpuf5tpk27q3i"}}}}]))
 
 
 (defn get-app-element []
