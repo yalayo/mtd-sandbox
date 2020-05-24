@@ -3,7 +3,7 @@
             [devcards.core :refer-macros [defcard defcard-rg]]))
 
 (defn- show-component []
-  [shell-component])
+  [show-user-component])
 
 (defcard-rg show-user
   [:div

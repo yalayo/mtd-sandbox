@@ -2,20 +2,24 @@
   (:require
    [goog.dom :as gdom]
    [reagent.core :as reagent :refer [atom]]
-   [reagent.dom :as rdom]))
+   [reagent.dom :as rdom]
+   [re-frame.core :as re-frame]
+   [re-graph.core :as re-graph]
+   [views.users.show-user :refer [show-user-component]]
+   [models.users.core :as model]))
 
 ;; define your app data so that it doesn't get over-written on reload
-(defonce app-state (atom {:text "Let's do this!"}))
+(defonce app-state (atom {}))
+
+(defn init-re-graph []
+  (re-frame/dispatch [::model/init]))
+
 
 (defn get-app-element []
   (gdom/getElement "app"))
 
-(defn main-component []
-  [:div
-   [:h1 (:text @app-state)]])
-
 (defn mount [el]
-  (rdom/render [main-component] el))
+  (rdom/render [show-user-component] el))
 
 (defn mount-app-element []
   (when-let [el (get-app-element)]
@@ -24,6 +28,8 @@
 ;; conditionally start your application based on the presence of an "app" element
 ;; this is particularly helpful for testing this ns without launching the app
 (mount-app-element)
+
+(init-re-graph)
 
 ;; specify reload hook with ^;after-load metadata
 (defn ^:after-load on-reload []
