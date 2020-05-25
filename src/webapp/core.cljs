@@ -9,7 +9,7 @@
    [models.users.core :as model]))
 
 ;; define your app data so that it doesn't get over-written on reload
-(defonce app-state (atom {}))
+(defonce app-state (atom {:user nil}))
 
 (defn init-re-graph []
   (re-frame/dispatch-sync [::re-graph/init {:ws nil

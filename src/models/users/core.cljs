@@ -42,7 +42,7 @@
  ::generate-user
  (fn [{:keys [db]} [_ q]]
    {:db db
-    :dispatch [::re-graph/query :g-user "{ generateUser { userFullName userId eoriNumber } }"
+    :dispatch [::re-graph/query "{ generateUser { userFullName userId eoriNumber } }"
                {}
                [::user-generated]]}))
 
@@ -51,10 +51,10 @@
  (fn [db [_ {:keys [data errors] :as payload}]]
    (if (seq errors)
      (println errors)
-     (println (data :generateUser)))))
+     (assoc db :user (data :generateUser)))))
 
 (re-frame/reg-sub
  ::user
  (fn [db _]
-   (db ::user)))
+   (db :user)))
 
