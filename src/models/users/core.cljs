@@ -51,10 +51,10 @@
  (fn [db [_ {:keys [data errors] :as payload}]]
    (if (seq errors)
      (println errors)
-     (assoc db :user data))))
+     (println (data :generateUser)))))
 
 (re-frame/reg-sub
  ::user
  (fn [db _]
-   (db :user)))
+   (db ::user)))
 
