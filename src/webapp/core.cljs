@@ -5,7 +5,7 @@
    [reagent.dom :as rdom]
    [re-frame.core :as re-frame]
    [re-graph.core :as re-graph]
-   [views.users.show-user :refer [show-user-component]]
+   [views.users.pick-user :refer [pick-user-component]]
    [models.users.core :as model]))
 
 ;; define your app data so that it doesn't get over-written on reload
@@ -14,14 +14,19 @@
 (defn init-re-graph []
   (re-frame/dispatch-sync [::re-graph/init {:ws nil
                                             :http {:url "https://3vsyt7kgfffilfb54esnzlhnuu.appsync-api.us-east-1.amazonaws.com/graphql"
-                                                   :impl {:with-credentials? false :headers {"x-api-key" "da2-nrwm45qlsjbtvlpuf5tpk27q3i" }}}}]))
+                                                   :impl {:with-credentials? false :headers {"x-api-key" "da2-oihdtbkwffbbrb6rrgnzmawowy" }}}}])
 
+  (re-frame/dispatch-sync [::model/generate-user1])
+  (re-frame/dispatch-sync [::model/generate-user2])
+  (re-frame/dispatch-sync [::model/generate-user3]))
+
+(init-re-graph)
 
 (defn get-app-element []
   (gdom/getElement "app"))
 
 (defn mount [el]
-  (rdom/render [show-user-component] el))
+  (rdom/render [pick-user-component] el))
 
 (defn mount-app-element []
   (when-let [el (get-app-element)]
@@ -30,8 +35,6 @@
 ;; conditionally start your application based on the presence of an "app" element
 ;; this is particularly helpful for testing this ns without launching the app
 (mount-app-element)
-
-(init-re-graph)
 
 ;; specify reload hook with ^;after-load metadata
 (defn ^:after-load on-reload []
